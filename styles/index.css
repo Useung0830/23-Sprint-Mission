@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 9px 400px;
+  padding: 9px 24px;
   position: sticky;
   top: 0;
   background-color: var(--bg-white);
@@ -88,6 +88,7 @@
   font-size: 40px;
   line-height: 140%;
   letter-spacing: 0;
+  width: 295px;
 }
 .main_write_button > button {
   height: 56px;
@@ -214,4 +215,44 @@ footer {
 .icons {
   display: flex;
   gap: 12px;
+}
+
+/*반응형 웹페이지 */
+
+@media (min-width: 1200px) {
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .main_container,
+  .container {
+    background-color: var(--bg-blue);
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 771px;
+    color: var(--secondary-700);
+  }
+  .main_write_button {
+    align-items: center;
+  }
+  .main_write_button > h1 {
+    text-align: center;
+    width: 100%;
+  }
+  .main_write_button > button {
+    width: 357px;
+    margin: 24px 0 0;
+  }
+  .main_content,
+  .text_image {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 211px;
+  }
+}
+
+@media (min-width: 375px) and (max-width: 767px) {
 }
