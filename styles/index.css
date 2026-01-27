@@ -205,6 +205,8 @@ footer {
 
 .FAQ {
   display: flex;
+  align-items: center;
+  justify-content: center;
   gap: 30px;
 }
 
@@ -215,9 +217,15 @@ footer {
 
 .icons {
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 12px;
 }
-
+.icons a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 /*반응형 웹페이지 */
 /* 테블릿 */
 @media (min-width: 375px) and (max-width: 1199px) {
@@ -341,5 +349,10 @@ footer {
   }
   .footer {
     width: 311px;
+    flex-wrap: wrap;
+  }
+  .footer > p {
+    order: 3;
+    margin-top: 60px;
   }
 }
