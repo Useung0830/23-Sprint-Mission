@@ -236,6 +236,9 @@ footer {
     width: 357px;
     margin: 24px 0 0;
   }
+  .main_content {
+    width: 100%;
+  }
   .main_content > img {
     width: 100%;
   }
@@ -248,7 +251,7 @@ footer {
     align-items: center;
   }
   .main_content {
-    gap: 211px;
+    gap: calc(211px - 12vw);
   }
   .all-section {
     margin: 24px 24px 56px;
@@ -277,11 +280,17 @@ footer {
     width: 100%;
   }
   .buttom_container {
-    height: 927px;
+    height: 100%;
+    width: 100%;
+    padding-top: 10vw;
   }
   .buttom_content {
-    gap: 217px;
+    gap: 6vw;
     text-align: center;
+    width: 100%;
+  }
+  .buttom_content > img {
+    width: 100%;
   }
   .footer {
     width: 536px;
