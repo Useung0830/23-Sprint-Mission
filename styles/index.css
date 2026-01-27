@@ -220,9 +220,9 @@ footer {
 
 /*반응형 웹페이지 */
 /* 테블릿 */
-@media (min-width: 768px) and (max-width: 1199px) {
+@media (min-width: 375px) and (max-width: 1199px) {
   .main_container {
-    height: 771px;
+    height: 100%;
     width: 100%;
   }
   .main_write_button {
@@ -238,6 +238,7 @@ footer {
   }
   .main_content {
     width: 100%;
+    padding-top: 84px;
   }
   .main_content > img {
     width: 100%;
@@ -269,15 +270,21 @@ footer {
   .content > img {
     width: 100%;
   }
+
   .subtitle {
     margin-bottom: 16px;
     font-family: Pretendard;
+    font-size: 18px;
   }
   .content2 {
     align-items: flex-end;
   }
   .main_text1 > h2 {
     width: 100%;
+    font-size: 32px;
+  }
+  .main_text1 > p {
+    font-size: 18px;
   }
   .buttom_container {
     height: 100%;
@@ -301,5 +308,38 @@ footer {
 @media (min-width: 375px) and (max-width: 767px) {
   .header_bar {
     padding: 9px 16px;
+  }
+  .main_content {
+    width: 100%;
+    padding-top: 48px;
+  }
+  .main_write_button {
+    width: 240px;
+  }
+  .main_write_button > h1 {
+    font-size: 32px;
+  }
+  .main_write_button > button {
+    width: 100%;
+    padding: 0;
+    font-size: 18px;
+    height: 48px;
+  }
+  .subtitle {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+  .main_text1 > h2 {
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+  .main_text1 > p {
+    font-size: 18px;
+  }
+  .buttom_write > h2 {
+    font-size: 32px;
+  }
+  .footer {
+    width: 311px;
   }
 }
