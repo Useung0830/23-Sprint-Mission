@@ -91,6 +91,8 @@ fieldset .input {
   top: 50%;
   transform: translate(-100%, -50%);
   right: 0;
+  cursor: pointer;
+  z-index: 1;
 }
 
 form > button {
