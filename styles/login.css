@@ -45,13 +45,11 @@
   flex-direction: column;
   gap: 16px;
 }
-.input-box label {
+.input-box {
   font-family: Pretendard;
   font-weight: 700;
-  font-style: Bold;
   font-size: 18px;
   line-height: 26px;
-  letter-spacing: 0%;
   color: var(--secondary-800);
 }
 
@@ -99,7 +97,7 @@
 
 form > button {
   height: 56px;
-  background-color: var(--primary-100);
+  background-color: var(--secondary-400);
   border-radius: 40px;
   border: none;
   color: var(--secondary-100);
@@ -170,7 +168,7 @@ form > button {
 }
 
 .signup-all {
-  height: 80vh;
+  height: 100%;
   margin: 60px auto;
 }
 
@@ -179,6 +177,10 @@ form > button {
   .login-all {
     margin: 190px auto;
     height: 100%;
+  }
+  .signup-all {
+    height: 100%;
+    margin: 48px auto;
   }
 }
 
@@ -211,5 +213,8 @@ form > button {
   }
   .login-main > form {
     gap: 16px;
+  }
+  .input-box {
+    font-size: 14px;
   }
 }
