@@ -1,23 +1,27 @@
 const userEmail = document.getElementById("useremail");
-const emailBox = document.querySelector(".email-box");
-const emailErr = document.createElement("span");
-// 이메일에 값이 없을 때 빨강색 테두리와 에러 메세지
-//이메일 형식에 맞지 않을 때 에러 메세지
-userEmail.addEventListener("focusout", (event) => {
+const emailText = document.querySelector(".error-text");
+
+// 1. 에러를 표시
+function showError(message) {
+  userEmail.classList.add("err-inputbox");
+  emailText.textContent = message;
+  emailText.style.display = "block";
+}
+
+function hideError() {
+  userEmail.classList.remove("err-inputbox");
+  emailText.style.display = "none";
+}
+
+userEmail.addEventListener("focusout", () => {
   const emailValue = userEmail.value;
-  const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+  const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
   if (emailValue === "") {
-    event.target.style.outline = "1px solid #F74747";
-    emailErr.textContent = "이메일을 입력해주세요.";
-    emailBox.append(emailErr);
+    showError("이메일을 입력해주세요.");
   } else if (!emailPattern.test(emailValue)) {
-    event.target.style.outline = "1px solid #F74747";
-    emailErr.textContent = "잘못된 이메일 형식 입니다.";
-    emailBox.append(emailErr);
+    showError("잘못된 이메일입니다.");
   } else {
-    event.target.style.outline = "none";
-    emailErr.textContent = "";
-    emailErr.remove();
+    hideError();
   }
 });

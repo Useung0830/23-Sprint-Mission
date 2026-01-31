@@ -15,6 +15,7 @@
   align-items: center;
   gap: 22.24px;
   text-decoration: none;
+  user-select: none;
 }
 .logo > img {
   width: 103.58px;
@@ -28,6 +29,9 @@
   color: var(--primary-100);
 }
 
+.label-login {
+  user-select: none;
+}
 .login-main {
   display: flex;
   flex-direction: column;
@@ -51,6 +55,7 @@
   font-size: 18px;
   line-height: 26px;
   color: var(--secondary-800);
+  user-select: none;
 }
 
 .input-box .input {
@@ -173,14 +178,15 @@ form > button {
 }
 
 /* 이메일 유효성 검사 */
-.err {
-  display: none;
-}
 .error-text {
   color: #f74747;
   font-size: 14px;
-  margin-top: 8px;
+  font-weight: 500;
+  display: none;
+  margin-top: -8px;
+  margin-left: 16px;
 }
+
 .err-inputbox {
   outline: 1px solid #f74747;
 }
