@@ -172,6 +172,19 @@ form > button {
   margin: 60px auto;
 }
 
+/* 이메일 유효성 검사 */
+.err {
+  display: none;
+}
+.error-text {
+  color: #f74747;
+  font-size: 14px;
+  margin-top: 8px;
+}
+.err-inputbox {
+  outline: 1px solid #f74747;
+}
+
 /* 테블릿,모바일 반응형웹 */
 @media (min-width: 375px) and (max-width: 1199px) {
   .login-all {
