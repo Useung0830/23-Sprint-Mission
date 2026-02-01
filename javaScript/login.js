@@ -35,7 +35,7 @@ function loginButton() {
   }
 }
 
-//로그인 이메일 에러
+//로그인,회원가입 이메일 에러
 userEmail.addEventListener("focusout", () => {
   const emailValue = userEmail.value.trim();
   const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -50,7 +50,7 @@ userEmail.addEventListener("focusout", () => {
   }
 });
 
-//로그인 비밀번호 에러
+//로그인,회원가입 비밀번호 에러
 userPassword.addEventListener("focusout", () => {
   const passwordValue = userPassword.value.trim();
   const passwordLength=passwordValue.length;
@@ -64,6 +64,39 @@ userPassword.addEventListener("focusout", () => {
     loginButton();
   }
 });
+
+const  passwordConfirm=document.getElementById("password_confirm");
+const passwordConfirmText=document.querySelector(".err-password_confirm");
+
+//회원가입 비밀번호_확인 에러
+passwordConfirm.addEventListener("focusout", () => {
+  const passwordValue = userPassword.value.trim();
+  const passwordConfirmValue=passwordConfirm.value.trim();
+
+  if (passwordValue !== passwordConfirmValue) {
+    showError(passwordConfirm, passwordConfirmText, "비밀번호가 일치하지 않습니다.");
+  }else{
+    hideError(passwordConfirm, passwordConfirmText);
+  }
+});
+
+const nickname=document.getElementById("nickname");
+const nicknameText=document.querySelector(".err-nickname");
+
+//닉네임 에러
+nickname.addEventListener("focusout", () => {
+  const nicknameValue = nickname.value.trim();
+  const nicknamePattern=/^[a-zA-Z가-힣]+$/;
+
+  if(nicknameValue===""){
+    showError(nickname, nicknameText, "닉네임을 입력해주세요.");
+  }else if (!nicknamePattern.test(nicknameValue)) {
+    showError(nickname, nicknameText, "닉네임을 다시 입력해주세요.");
+  } else {
+    hideError(nickname, nicknameText);
+    loginButton();
+  }
+})
 
 //활성화된 로그인 버튼 클릭 시 이동
 loginBtn.addEventListener("click", (e) => {
@@ -89,5 +122,7 @@ eyeImg.addEventListener("click",()=>{
     userPassword.setAttribute('type', "password");
   }
 })
+
+
 
 
