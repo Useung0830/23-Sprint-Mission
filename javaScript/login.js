@@ -69,7 +69,8 @@ const  passwordConfirm=document.getElementById("password_confirm");
 const passwordConfirmText=document.querySelector(".err-password_confirm");
 
 //회원가입 비밀번호_확인 에러
-passwordConfirm.addEventListener("focusout", () => {
+try{
+  passwordConfirm.addEventListener("focusout", () => {
   const passwordValue = userPassword.value.trim();
   const passwordConfirmValue=passwordConfirm.value.trim();
 
@@ -79,12 +80,17 @@ passwordConfirm.addEventListener("focusout", () => {
     hideError(passwordConfirm, passwordConfirmText);
   }
 });
+}catch(err){
+  console.log("회원가입과 같은 파일 사용 오류");
+}
+
 
 const nickname=document.getElementById("nickname");
 const nicknameText=document.querySelector(".err-nickname");
 
 //닉네임 에러
-nickname.addEventListener("focusout", () => {
+try{
+  nickname.addEventListener("focusout", () => {
   const nicknameValue = nickname.value.trim();
   const nicknamePattern=/^[a-zA-Z가-힣]+$/;
 
@@ -97,6 +103,9 @@ nickname.addEventListener("focusout", () => {
     loginButton();
   }
 })
+}catch(err){
+  console.log("회원가입과 같은 파일 사용 오류");
+}
 
 //활성화된 로그인 버튼 클릭 시 이동
 loginBtn.addEventListener("click", (e) => {
@@ -106,23 +115,23 @@ loginBtn.addEventListener("click", (e) => {
   }
 });
 
+// //비밀번호 눈 감고 뜨기
+const eyeImgs = document.querySelectorAll('.eye-image');
 
-const eyeImg=document.querySelector('.eye-image');
+eyeImgs.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const isClosed = btn.getAttribute('src').includes('password_close');
+    const targetInput = btn.previousElementSibling; 
 
-//비밀번호 눈 감고 뜨기
-eyeImg.addEventListener("click",()=>{
-  const imgSrc = eyeImg.getAttribute('src');
-  const passwordType = userPassword.getAttribute('type');
-
-  if (imgSrc === "./images/login/password_close_eye_btn.svg") {
-    eyeImg.setAttribute('src', "./images/login/password_open_eye_btn.svg");
-    userPassword.setAttribute('type', "text");
-  } else {
-    eyeImg.setAttribute('src', "./images/login/password_close_eye_btn.svg");
-    userPassword.setAttribute('type', "password");
-  }
-})
-
+    if (isClosed) {
+      btn.setAttribute('src', "./images/login/password_open_eye_btn.svg");
+      targetInput.setAttribute('type', "text");
+    } else {
+      btn.setAttribute('src', "./images/login/password_close_eye_btn.svg");
+      targetInput.setAttribute('type', "password");
+    }
+  });
+});
 
 
 
