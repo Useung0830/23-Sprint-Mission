@@ -7,6 +7,7 @@ const loginBtn = document.querySelector(".go-login");
 
 // 에러 나타내기 (이메일、 비밀번호)
 function showError(inputElement, textElement, message) {
+  if (!inputElement || !textElement) return;
   inputElement.classList.add("err-inputbox");
   textElement.textContent = message;
   textElement.style.display = "block";
@@ -14,12 +15,14 @@ function showError(inputElement, textElement, message) {
 
 // 에러 없애기 (이메일、 비밀번호)
 function hideError(inputElement, textElement) {
+  if (!inputElement || !textElement) return;
   inputElement.classList.remove("err-inputbox");
   textElement.style.display = "none";
 }
 
-//로그인 버튼 활성화
+//로그인page 로그인 버튼 활성화
 function loginButton() {
+  if (!loginBtn || !emailText || !passwordText) return;
   const emailDisplay = window.getComputedStyle(emailText).display;
   const passwordDisplay = window.getComputedStyle(passwordText).display;
   const isEmailValid = emailDisplay === "none" && userEmail.value.trim() !== "";
@@ -35,7 +38,7 @@ function loginButton() {
   }
 }
 
-//로그인,회원가입 이메일 에러
+//로그인,회원가입page  이메일 에러
 userEmail.addEventListener("focusout", () => {
   const emailValue = userEmail.value.trim();
   const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -50,7 +53,7 @@ userEmail.addEventListener("focusout", () => {
   }
 });
 
-//로그인,회원가입 비밀번호 에러
+//로그인,회원가입page 비밀번호 에러
 userPassword.addEventListener("focusout", () => {
   const passwordValue = userPassword.value.trim();
   const passwordLength=passwordValue.length;
@@ -68,7 +71,7 @@ userPassword.addEventListener("focusout", () => {
 const  passwordConfirm=document.getElementById("password_confirm");
 const passwordConfirmText=document.querySelector(".err-password_confirm");
 
-//회원가입 비밀번호_확인 에러
+//회원가입page 비밀번호_확인 에러
 try{
   passwordConfirm.addEventListener("focusout", () => {
   const passwordValue = userPassword.value.trim();
@@ -78,17 +81,17 @@ try{
     showError(passwordConfirm, passwordConfirmText, "비밀번호가 일치하지 않습니다.");
   }else{
     hideError(passwordConfirm, passwordConfirmText);
+    signupButton()
   }
 });
 }catch(err){
   console.log("회원가입과 같은 파일 사용 오류");
 }
 
-
 const nickname=document.getElementById("nickname");
 const nicknameText=document.querySelector(".err-nickname");
 
-//닉네임 에러
+//회원가입page 닉네임 에러
 try{
   nickname.addEventListener("focusout", () => {
   const nicknameValue = nickname.value.trim();
@@ -100,14 +103,13 @@ try{
     showError(nickname, nicknameText, "닉네임을 다시 입력해주세요.");
   } else {
     hideError(nickname, nicknameText);
-    loginButton();
   }
 })
 }catch(err){
   console.log("회원가입과 같은 파일 사용 오류");
 }
 
-//활성화된 로그인 버튼 클릭 시 이동
+//로그인page  활성화된 로그인 버튼 클릭 시 이동
 loginBtn.addEventListener("click", (e) => {
   if (!loginBtn.disabled) {
     e.preventDefault(); 
@@ -132,6 +134,28 @@ eyeImgs.forEach((btn) => {
     }
   });
 });
+
+//회원가입 로그인버튼 활성화
+function signupButton() {
+  if (!nickname || !passwordConfirm) return;
+  const emailDisplay = window.getComputedStyle(emailText).display;
+  const nicknameDisplay=window.getComputedStyle(passwordConfirmText).display;
+  const passwordDisplay = window.getComputedStyle(passwordText).display;
+  const passwordConfirmDisplay=window.getComputedStyle(passwordConfirmText).display;
+  
+  const isEmailValid = emailDisplay === "none" && userEmail.value.trim() !== "";
+  const isNicknameValid = nicknameDisplay === "none" && nickname.value.trim() !== "";
+  const isPasswordValid = passwordDisplay === "none" && userPassword.value.trim() !== "";
+  const ispasswordConfirmValid = passwordConfirmDisplay === "none" && passwordConfirm.value.trim() !== "";
+
+  if (isEmailValid && isNicknameValid && isPasswordValid && ispasswordConfirmValid) {
+    loginBtn.classList.add("able-login");
+    loginBtn.disabled = false;
+  } else {
+    loginBtn.classList.remove("able-login");
+    loginBtn.disabled = true;
+  }
+}
 
 
 
