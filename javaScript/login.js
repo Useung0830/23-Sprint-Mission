@@ -64,14 +64,11 @@ userPassword.addEventListener("focusout", () => {
   }
 });
 
+//활성화된 로그인 버튼 클릭 시 이동
 loginBtn.addEventListener("click", (e) => {
-  // 만약 버튼이 활성화된 상태에서 클릭되었다면
   if (!loginBtn.disabled) {
-    // 폼 제출 기능이 있다면 기본 동작 방지 (필요 시)
     e.preventDefault(); 
-    
-    // 페이지 이동
-    location.href = 'index.html';
+    location.href = '/items';
   }
 });
 
