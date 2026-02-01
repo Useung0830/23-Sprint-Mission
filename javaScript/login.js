@@ -17,6 +17,7 @@ function hideError(inputElement, textElement) {
   inputElement.classList.remove("err-inputbox");
   textElement.style.display = "none";
 }
+
 //로그인 버튼 활성화
 function loginButton() {
   const emailDisplay = window.getComputedStyle(emailText).display;
@@ -71,4 +72,22 @@ loginBtn.addEventListener("click", (e) => {
     location.href = '/items';
   }
 });
+
+
+const eyeImg=document.querySelector('.eye-image');
+
+//비밀번호 눈 감고 뜨기
+eyeImg.addEventListener("click",()=>{
+  const imgSrc = eyeImg.getAttribute('src');
+  const passwordType = userPassword.getAttribute('type');
+
+  if (imgSrc === "./images/login/password_close_eye_btn.svg") {
+    eyeImg.setAttribute('src', "./images/login/password_open_eye_btn.svg");
+    userPassword.setAttribute('type', "text");
+  } else {
+    eyeImg.setAttribute('src', "./images/login/password_close_eye_btn.svg");
+    userPassword.setAttribute('type', "password");
+  }
+})
+
 
