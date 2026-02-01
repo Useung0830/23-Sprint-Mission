@@ -100,7 +100,7 @@
   z-index: 1;
 }
 
-form > button {
+.go-login{
   height: 56px;
   background-color: var(--secondary-400);
   border-radius: 40px;
@@ -180,10 +180,7 @@ form > button {
 /* 이메일 유효성 검사 */
 .error-text {
   color: #f74747;
-<<<<<<< HEAD
   font-family: Pretendard;
-=======
->>>>>>> 4319a61a206d4b2e99008730548e8708645dc6c7
   font-size: 14px;
   font-weight: 500;
   display: none;
@@ -193,6 +190,14 @@ form > button {
 
 .err-inputbox {
   outline: 1px solid #f74747;
+}
+
+.able-login{
+  background-color: var(--primary-100);
+}
+
+.go-login:disabled{
+  background-color: var(--secondary-400);
 }
 
 /* 테블릿,모바일 반응형웹 */

@@ -1,7 +1,9 @@
 const userEmail = document.getElementById("useremail");
-const userPassword = document.getElementById("password");
 const emailText = document.querySelector(".error-text");
+const userPassword = document.getElementById("password");
 const passwordText = document.querySelector(".err-password");
+const loginBtn = document.querySelector(".go-login");
+
 
 // 에러 나타내기 (이메일、 비밀번호)
 function showError(inputElement, textElement, message) {
@@ -15,14 +17,26 @@ function hideError(inputElement, textElement) {
   inputElement.classList.remove("err-inputbox");
   textElement.style.display = "none";
 }
+//로그인 버튼 활성화
+function loginButton() {
+  const emailDisplay = window.getComputedStyle(emailText).display;
+  const passwordDisplay = window.getComputedStyle(passwordText).display;
+  const isEmailValid = emailDisplay === "none" && userEmail.value.trim() !== "";
+  const isPasswordValid = passwordDisplay === "none" && userPassword.value.trim() !== "";
 
-function loginButton(){
-  
+  if (isEmailValid && isPasswordValid) {
+
+    loginBtn.classList.add("able-login");
+    loginBtn.disabled = false;
+  } else {
+    loginBtn.classList.remove("able-login");
+    loginBtn.disabled = true;
+  }
 }
 
 //로그인 이메일 에러
 userEmail.addEventListener("focusout", () => {
-  const emailValue = userEmail.value;
+  const emailValue = userEmail.value.trim();
   const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
   if (emailValue === "") {
@@ -31,12 +45,13 @@ userEmail.addEventListener("focusout", () => {
     showError(userEmail, emailText, "잘못된 이메일입니다.");
   } else {
     hideError(userEmail, emailText);
+    loginButton();
   }
 });
 
 //로그인 비밀번호 에러
 userPassword.addEventListener("focusout", () => {
-  const passwordValue = userPassword.value;
+  const passwordValue = userPassword.value.trim();
   const passwordLength=passwordValue.length;
 
   if (passwordValue === "") {
@@ -45,7 +60,18 @@ userPassword.addEventListener("focusout", () => {
     showError(userPassword, passwordText, "비밀번호를 8자 이상 입력해주세요.");
   } else {
     hideError(userPassword, passwordText);
+    loginButton();
   }
 });
 
+loginBtn.addEventListener("click", (e) => {
+  // 만약 버튼이 활성화된 상태에서 클릭되었다면
+  if (!loginBtn.disabled) {
+    // 폼 제출 기능이 있다면 기본 동작 방지 (필요 시)
+    e.preventDefault(); 
+    
+    // 페이지 이동
+    location.href = 'index.html';
+  }
+});
 
