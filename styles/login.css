@@ -180,7 +180,10 @@ form > button {
 /* 이메일 유효성 검사 */
 .error-text {
   color: #f74747;
+<<<<<<< HEAD
   font-family: Pretendard;
+=======
+>>>>>>> 4319a61a206d4b2e99008730548e8708645dc6c7
   font-size: 14px;
   font-weight: 500;
   display: none;
