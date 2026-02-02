@@ -84,7 +84,14 @@
             </div>
             <span class="error-text err-password_confirm"></span>
           </div>
-          <button class="go-signup" type="submit">회원가입</button>
+          <button
+            class="go-signup"
+            onclick="if (!this.disabled) location.href = '/login.html';"
+            type="button"
+            disabled
+          >
+            회원가입
+          </button>
         </form>
 
         <div class="simple-login">

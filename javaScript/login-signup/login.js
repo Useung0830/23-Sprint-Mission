@@ -29,7 +29,6 @@ userEmail.addEventListener("focusout", () => {
     hideError(userEmail, emailText);
   }
 });
-
 //로그인,회원가입page 비밀번호 에러
 userPassword.addEventListener("focusout", () => {
   const passwordValue = userPassword.value.trim();
@@ -80,14 +79,13 @@ eyeImgs.forEach((btn) => {
 });
 
 const loginForm = document.querySelector(".login-main");
+
 //입력 시 항상 로그인 버튼 활성화 조건 확인
 if (loginForm) {
   loginForm.addEventListener("input", (e) => {
     loginButton();
   });
 }
-
-// loginBtn이 존재할 때만 클릭 이벤트 등록
 if (loginBtn) {
   loginBtn.addEventListener("click", (e) => {
     e.preventDefault();

@@ -1,11 +1,4 @@
-import {
-  showError,
-  hideError,
-  userEmail,
-  userPassword,
-  emailText,
-  passwordText,
-} from "./login.js";
+import { showError, hideError, userEmail, userPassword } from "./login.js";
 
 const signupBtn = document.querySelector(".go-signup");
 const passwordConfirm = document.getElementById("password_confirm");
