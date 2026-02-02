@@ -32,18 +32,18 @@
 .label-login {
   user-select: none;
 }
-.login-main {
+.main-form {
   display: flex;
   flex-direction: column;
   width: 100%;
   gap: 24px;
 }
-.login-main > form {
+.main-form > form {
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
-.login-main .input-box {
+.main-form .input-box {
   border: none;
   display: flex;
   flex-direction: column;
@@ -100,7 +100,20 @@
   z-index: 1;
 }
 
-.go-login{
+.go-login {
+  height: 56px;
+  background-color: var(--secondary-400);
+  border-radius: 40px;
+  border: none;
+  color: var(--secondary-100);
+  font-family: Pretendard;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 32px;
+  text-align: center;
+}
+
+.go-signup {
   height: 56px;
   background-color: var(--secondary-400);
   border-radius: 40px;
@@ -192,11 +205,11 @@
   outline: 1px solid #f74747;
 }
 
-.able-login{
+.able-login {
   background-color: var(--primary-100);
 }
 
-.go-login:disabled{
+.go-login:disabled {
   background-color: var(--secondary-400);
 }
 
@@ -236,10 +249,10 @@
   .input-box .label-login {
     font-size: 14px;
   }
-  .login-main .input-box {
+  .main-form .input-box {
     gap: 8px;
   }
-  .login-main > form {
+  .main-form > form {
     gap: 16px;
   }
   .input-box {
