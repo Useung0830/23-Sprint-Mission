@@ -1,18 +1,18 @@
-const userEmail = document.getElementById("useremail");
-const emailText = document.querySelector(".err-email");
-const userPassword = document.getElementById("password");
-const passwordText = document.querySelector(".err-password");
+export const userEmail = document.getElementById("useremail");
+export const emailText = document.querySelector(".err-email");
+export const userPassword = document.getElementById("password");
+export const passwordText = document.querySelector(".err-password");
 const loginBtn = document.querySelector(".go-login");
 
 // 에러 나타내기 (이메일、 비밀번호)
-function showError(inputElement, textElement, message) {
+export function showError(inputElement, textElement, message) {
   inputElement.classList.add("err-inputbox");
   textElement.textContent = message;
   textElement.style.display = "block";
 }
 
 // 에러 없애기 (이메일、 비밀번호)
-function hideError(inputElement, textElement) {
+export function hideError(inputElement, textElement) {
   inputElement.classList.remove("err-inputbox");
   textElement.style.display = "none";
 }
@@ -28,7 +28,6 @@ userEmail.addEventListener("focusout", () => {
   } else {
     hideError(userEmail, emailText);
   }
-  loginButton();
 });
 
 //로그인,회원가입page 비밀번호 에러
@@ -42,14 +41,13 @@ userPassword.addEventListener("focusout", () => {
   } else {
     hideError(userPassword, passwordText);
   }
-  loginButton();
 });
 
 const validateEmail = (email) =>
   /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email);
 const validatePassword = (pw) => pw.length >= 8;
 
-//로그인page 로그인 버튼 활성화
+// 로그인page 로그인 버튼 활성화
 function loginButton() {
   const isEmailValid = validateEmail(userEmail.value.trim());
   const isPasswordValid = validatePassword(userPassword.value.trim());
@@ -63,16 +61,8 @@ function loginButton() {
   }
 }
 
-//로그인page  활성화된 로그인 버튼 클릭 시 이동
-loginBtn.addEventListener("click", (e) => {
-  if (!loginBtn.disabled) {
-    e.preventDefault();
-    location.href = "/items";
-  }
-});
-
 // //비밀번호 눈 감고 뜨기
-const eyeImgs = document.querySelectorAll(".eye-image");
+export const eyeImgs = document.querySelectorAll(".eye-image");
 
 eyeImgs.forEach((btn) => {
   btn.addEventListener("click", () => {
@@ -89,78 +79,20 @@ eyeImgs.forEach((btn) => {
   });
 });
 
-// const passwordConfirm = document.getElementById("password_confirm");
-// const passwordConfirmText = document.querySelector(".err-password_confirm");
+const loginForm = document.querySelector(".login-main");
+//입력 시 항상 로그인 버튼 활성화 조건 확인
+if (loginForm) {
+  loginForm.addEventListener("input", (e) => {
+    loginButton();
+  });
+}
 
-// //회원가입page 비밀번호_확인 에러
-// try {
-//   passwordConfirm.addEventListener("focusout", () => {
-//     const passwordValue = userPassword.value.trim();
-//     const passwordConfirmValue = passwordConfirm.value.trim();
-
-//     if (passwordValue !== passwordConfirmValue) {
-//       showError(
-//         passwordConfirm,
-//         passwordConfirmText,
-//         "비밀번호가 일치하지 않습니다.",
-//       );
-//     } else {
-//       hideError(passwordConfirm, passwordConfirmText);
-//       signupButton();
-//     }
-//   });
-// } catch (err) {
-//   console.log("회원가입과 같은 파일 사용 오류");
-// }
-
-// const nickname = document.getElementById("nickname");
-// const nicknameText = document.querySelector(".err-nickname");
-
-// //회원가입page 닉네임 에러
-// try {
-//   nickname.addEventListener("focusout", () => {
-//     const nicknameValue = nickname.value.trim();
-//     const nicknamePattern = /^[a-zA-Z가-힣]+$/;
-
-//     if (nicknameValue === "") {
-//       showError(nickname, nicknameText, "닉네임을 입력해주세요.");
-//     } else if (!nicknamePattern.test(nicknameValue)) {
-//       showError(nickname, nicknameText, "닉네임을 다시 입력해주세요.");
-//     } else {
-//       hideError(nickname, nicknameText);
-//     }
-//   });
-// } catch (err) {
-//   console.log("회원가입과 같은 파일 사용 오류");
-// }
-
-// //회원가입 로그인버튼 활성화
-// function signupButton() {
-//   if (!nickname || !passwordConfirm) return;
-//   const emailDisplay = window.getComputedStyle(emailText).display;
-//   const nicknameDisplay = window.getComputedStyle(passwordConfirmText).display;
-//   const passwordDisplay = window.getComputedStyle(passwordText).display;
-//   const passwordConfirmDisplay =
-//     window.getComputedStyle(passwordConfirmText).display;
-
-//   const isEmailValid = emailDisplay === "none" && userEmail.value.trim() !== "";
-//   const isNicknameValid =
-//     nicknameDisplay === "none" && nickname.value.trim() !== "";
-//   const isPasswordValid =
-//     passwordDisplay === "none" && userPassword.value.trim() !== "";
-//   const ispasswordConfirmValid =
-//     passwordConfirmDisplay === "none" && passwordConfirm.value.trim() !== "";
-
-//   if (
-//     isEmailValid &&
-//     isNicknameValid &&
-//     isPasswordValid &&
-//     ispasswordConfirmValid
-//   ) {
-//     loginBtn.classList.add("able-login");
-//     loginBtn.disabled = false;
-//   } else {
-//     loginBtn.classList.remove("able-login");
-//     loginBtn.disabled = true;
-//   }
-// }
+// loginBtn이 존재할 때만 클릭 이벤트 등록
+if (loginBtn) {
+  loginBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    if (!loginBtn.disabled) {
+      location.href = "/items";
+    }
+  });
+}
