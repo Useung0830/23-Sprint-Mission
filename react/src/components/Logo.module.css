@@ -1,0 +1,20 @@
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+.logoFont {
+  font-family: ROKAF Sans;
+  font-weight: 700;
+  font-size: 25.63px;
+  color: #3692ff;
+  text-decoration: none;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
