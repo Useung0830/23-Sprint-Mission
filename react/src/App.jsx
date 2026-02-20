@@ -6,8 +6,13 @@ import AllList from "./components/AllList";
 import { useEffect, useState } from "react";
 
 function App() {
-  const [order, setOrder] = useState();
+  const [order, setOrder] = useState("createAt");
   const [items, setItems] = useState([]);
+  const [keyword, setKeyword] = useState("");
+
+  const handleKeywordChange = (e) => {
+    setKeyword(e.target.value);
+  };
 
   const itemsLoad = async () => {
     const response = await axios.get("/Products");
@@ -19,20 +24,25 @@ function App() {
     .sort((a, b) => b.favoriteCount - a.favoriteCount)
     .slice(0, 4);
 
+  const sortedAllList = [...items]
+    .sort((a, b) => new Date(b[order]) - new Date(a[order]))
+    .filter((item) => item.name.includes(keyword));
+
   useEffect(() => {
     itemsLoad();
   }, []);
-
-  const sortedAllList = [...items]
-    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-    .slice(0, 8);
 
   return (
     <>
       <Header />
       <div className={styles.main}>
-        <BestList items={sortedBestItems} />
-        <AllList items={sortedAllList} />
+        <BestList items={sortedBestItems} type="best" />
+        <AllList
+          items={sortedAllList}
+          type="all"
+          search={handleKeywordChange}
+          setOrder={setOrder}
+        />
       </div>
     </>
   );

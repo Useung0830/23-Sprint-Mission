@@ -1,12 +1,19 @@
+.bestList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 1200px;
+}
 .card {
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: row;
-  gap: 16px;
+  gap: 24px;
 }
 .title {
   color: var(--secondary-900);
   font: var(--font-Bold20);
-  margin-bottom: 16px;
 }
 .list {
   list-style: none;
