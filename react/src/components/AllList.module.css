@@ -1,0 +1,13 @@
+.card {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+}
+.title {
+  color: var(--secondary-900);
+  font: var(--font-Bold20);
+  margin-bottom: 16px;
+}
+.list {
+  list-style: none;
+}
