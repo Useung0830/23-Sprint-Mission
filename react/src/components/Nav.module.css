@@ -11,10 +11,8 @@
   margin: 0;
   display: flex;
   justify-content: center;
-  color: #4b5563;
-  font-family: pretendard;
-  font-size: 18px;
-  font-weight: 700;
+  color: var(--secondary-600);
+  font: var(--font-Bold18);
 }
 .li {
   padding: 21px 15px;

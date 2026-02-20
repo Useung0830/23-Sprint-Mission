@@ -1,0 +1,32 @@
+.cardImg {
+  width: 282px;
+  height: 282px;
+  object-fit: cover;
+  border-radius: 16px;
+}
+.description {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 10px;
+}
+.cardTitle {
+  font: var(--font-Medium14);
+  color: var(--secondary-800);
+}
+.cardPrice {
+  font: var(--font-Bold16);
+  color: var(--secondary-800);
+}
+
+.cardFavoriteCount {
+  font: var(--font-Medium12);
+  color: var(--secondary-600);
+}
+.favorite {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 4px;
+}
