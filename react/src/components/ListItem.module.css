@@ -1,6 +1,12 @@
-.cardImg {
+.size-best {
   width: 282px;
   height: 282px;
+  object-fit: cover;
+  border-radius: 16px;
+}
+.size-all {
+  width: 220px;
+  height: 220px;
   object-fit: cover;
   border-radius: 16px;
 }

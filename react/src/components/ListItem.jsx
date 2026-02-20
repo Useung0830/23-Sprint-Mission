@@ -1,10 +1,12 @@
-import styles from "./BestListItem.module.css";
+import styles from "./ListItem.module.css";
 import Heart from "../../../images/favoriteHeart.svg";
 
-function BestListItem({ item }) {
+function ListItem({ item, type }) {
+  const imageClass = type === "best" ? styles["size-best"] : styles["size-all"];
+
   return (
     <div className={styles.card}>
-      <img className={styles.cardImg} src={item.images} />
+      <img className={imageClass} src={item.images} />
       <div className={styles.description}>
         <h2 className={styles.cardTitle}>{item.name}</h2>
         <span className={styles.cardPrice}>{item.price}</span>
@@ -17,4 +19,4 @@ function BestListItem({ item }) {
   );
 }
 
-export default BestListItem;
+export default ListItem;
