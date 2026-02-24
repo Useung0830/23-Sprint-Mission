@@ -1,8 +1,7 @@
 import styles from "./Pagination.module.css";
 import arrowRight from "../../../images/arrow_right.svg";
 import arrowLift from "../../../images/arrow_left.svg";
-function Pagination({ currentPage, onPageChange, totalCount }) {
-  const pageSize = 10;
+function Pagination({ currentPage, onPageChange, totalCount, pageSize }) {
   const totalPages = Math.ceil(totalCount / pageSize);
   const pageLimit = 5;
 
