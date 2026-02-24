@@ -1,19 +1,17 @@
 import styles from "./AllList.module.css";
+import ButtonCreateItem from "./ButtonCreateItem.jsx";
+import InputSearch from "./InputSearch.jsx";
 import ListItem from "./ListItem.jsx";
+import OrderSelect from "./OrderSelect.jsx";
 
 function AllList({ items, type, search, setOrder }) {
   return (
     <div className={styles.allList}>
-      <div>
+      <div className={styles.topSection}>
         <h1 className={styles.title}>전체 상품</h1>
-        <div>
-          <input onChange={search} />
-          <button>상품 등록하기</button>
-          <select onChange={(e) => setOrder(e.target.value)}>
-            <option value="createdAt">최신순</option>
-            <option value="favoriteCount">좋아요순</option>
-          </select>
-        </div>
+        <InputSearch search={search} />
+        <ButtonCreateItem>상품 등록하기</ButtonCreateItem>
+        <OrderSelect setOrder={setOrder} />
       </div>
       <ul className={styles.card}>
         {items.map((item) => (
