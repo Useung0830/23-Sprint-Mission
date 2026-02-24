@@ -18,3 +18,15 @@
   justify-content: center;
   gap: 8px;
 }
+
+@media (min-width: 375px) and (max-width: 773px) {
+  .logoFont {
+    font-size: 20.2px;
+  }
+  .logo > img {
+    display: none;
+  }
+}
+
+@media (max-width: 375px) {
+}

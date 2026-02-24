@@ -5,7 +5,7 @@ function ListItem({ item, type }) {
   const imageClass = type === "best" ? styles["size-best"] : styles["size-all"];
 
   return (
-    <div className={styles.card}>
+    <div className={styles.box}>
       <img className={imageClass} src={item.images} />
       <div className={styles.description}>
         <h2 className={styles.cardTitle}>{item.name}</h2>

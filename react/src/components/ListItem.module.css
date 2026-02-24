@@ -17,6 +17,11 @@
   align-items: flex-start;
   gap: 10px;
 }
+.box {
+  display: grid;
+  flex-direction: column;
+  gap: 16px;
+}
 .cardTitle {
   font: var(--font-Medium14);
   color: var(--secondary-800);
@@ -35,4 +40,34 @@
   justify-content: flex-start;
   align-items: center;
   gap: 4px;
+}
+
+/* 테블릿,모바일 반응형웹 */
+@media (min-width: 774px) and (max-width: 1200px) {
+  .size-best {
+    width: 343px;
+    height: 343px;
+    border-radius: 19.46px;
+  }
+}
+
+@media (min-width: 375px) and (max-width: 773px) {
+  .size-best {
+    width: 343px;
+    height: 343px;
+    border-radius: 19.46px;
+  }
+  .size-all {
+    width: 168px;
+    height: 168px;
+    border-radius: 12px;
+  }
+}
+
+@media (max-width: 375px) {
+  .size-best {
+    width: 168px;
+    height: 168px;
+    border-radius: 12px;
+  }
 }

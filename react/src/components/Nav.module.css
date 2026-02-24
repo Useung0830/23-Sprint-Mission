@@ -17,3 +17,15 @@
 .li {
   padding: 21px 15px;
 }
+
+@media (min-width: 375px) and (max-width: 773px) {
+  .ul {
+    gap: 8px;
+  }
+  .li {
+    padding: 25px 0;
+  }
+}
+
+@media (max-width: 375px) {
+}
