@@ -44,7 +44,6 @@
   .bestList {
     width: 343px;
   }
-  /* 2번째 아이템부터 숨김 */
   .list:nth-child(n + 2) {
     display: none;
   }
