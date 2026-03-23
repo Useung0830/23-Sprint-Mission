@@ -1,9 +1,9 @@
-import styles from "./itemsPage.module.css";
-import BestList from "../components/BestList";
+import { useEffect, useState, useRef } from "react";
+import styles from "./ItemsPage.module.css";
+import BestList from "../components/Items/BestList";
 import axios from "../api/axios";
-import AllList from "../components/AllList";
-import { useEffect, useState } from "react";
-import Pagination from "../components/Pagination";
+import AllList from "../components/Items/AllList";
+import Pagination from "../components/Items/Pagination";
 
 function ItemsPage() {
   const [orderBy, setOrderBy] = useState("recent");
@@ -14,7 +14,15 @@ function ItemsPage() {
   const [totalCount, setTotalCount] = useState(0);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
-  //검색 키워드 저장
+  const prevPageSizeRef = useRef();
+
+  const getPageSize = () => {
+    if (windowWidth <= 773) return 4;
+    if (windowWidth <= 1200) return 6;
+    return 10;
+  };
+  const pageSize = getPageSize();
+
   const handleKeywordChange = (e) => {
     setKeyword(e.target.value);
     setPage(1);
@@ -25,70 +33,55 @@ function ItemsPage() {
     setPage(1);
   };
 
-  //베스트 상품 4개 가져오기
   const loadBestItems = async () => {
     try {
       const response = await axios.get("/Products", {
-        params: {
-          orderBy: "favorite",
-          pageSize: 4,
-        },
+        params: { orderBy: "favorite", pageSize: 4 },
       });
-
       setBestItems(response.data.list);
     } catch (error) {
       console.error("베스트 상품 로드 실패:", error);
     }
   };
 
-  //전체 상품 가져오기
-  const itemsLoad = async (
-    currentPage,
-    currentOrder,
-    currentKeyword,
-    currentPageSize,
-  ) => {
+  const itemsLoad = async (p, o, k, s) => {
     try {
       const response = await axios.get(`/Products`, {
-        params: {
-          orderBy: currentOrder,
-          page: currentPage,
-          pageSize: currentPageSize,
-          keyword: currentKeyword,
-        },
+        params: { orderBy: o, page: p, pageSize: s, keyword: k },
       });
       setItems(response.data.list);
       setTotalCount(response.data.totalCount);
     } catch (error) {
-      console.error("에러 상세:", error.response?.data?.message);
+      console.error(
+        "상품 로드 에러:",
+        error.response?.data?.message || error.message,
+      );
     }
   };
 
-  const getPageSize = () => {
-    if (windowWidth <= 773) return 4;
-    if (windowWidth <= 1200) return 6;
-    return 10;
-  };
-
-  const pageSize = getPageSize();
-
   useEffect(() => {
     loadBestItems();
+    prevPageSizeRef.current = pageSize;
   }, []);
-
-  useEffect(() => {
-    setPage(1);
-  }, [pageSize]);
-
-  useEffect(() => {
-    itemsLoad(page, orderBy, keyword, pageSize);
-  }, [page, orderBy, keyword, pageSize]);
 
   useEffect(() => {
     const handleResize = () => setWindowWidth(window.innerWidth);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  useEffect(() => {
+    const isPageSizeChanged = prevPageSizeRef.current !== pageSize;
+
+    const targetPage = isPageSizeChanged ? 1 : page;
+
+    itemsLoad(targetPage, orderBy, keyword, pageSize);
+
+    if (isPageSizeChanged) {
+      setPage(1);
+      prevPageSizeRef.current = pageSize;
+    }
+  }, [page, orderBy, keyword, pageSize]);
 
   return (
     <div className={styles.wrapper}>
