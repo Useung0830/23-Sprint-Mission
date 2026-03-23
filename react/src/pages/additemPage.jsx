@@ -1,4 +1,4 @@
-function additemPage() {
+function AdditemPage() {
   return null;
 }
-export default additemPage;
+export default AdditemPage;

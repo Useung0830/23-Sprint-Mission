@@ -1,6 +1,6 @@
 import styles from "./OrderSelect.module.css";
-import arrowDown from "../../../images/ic_arrow_down.svg";
-import sortIc from "../../../images/ic_sort.svg";
+import arrowDown from "../../../../images/ic_arrow_down.svg";
+import sortIc from "../../../../images/ic_sort.svg";
 import { useState } from "react";
 
 function OrderSelect({ setOrder }) {
