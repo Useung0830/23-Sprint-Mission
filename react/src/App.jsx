@@ -1,6 +1,6 @@
 import ItemsPage from "./pages/ItemsPage";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
+import Header from "./components/Items/Header";
+import Footer from "./components/Items/Footer";
 
 function App() {
   return (
