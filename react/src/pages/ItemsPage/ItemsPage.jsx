@@ -1,9 +1,9 @@
 import { useEffect, useState, useRef } from "react";
 import styles from "./ItemsPage.module.css";
-import BestList from "../components/Items/BestList";
-import axios from "../api/axios";
-import AllList from "../components/Items/AllList";
-import Pagination from "../components/Items/Pagination";
+import BestList from "../../components/Items/BestList";
+import axios from "../../api/axios";
+import AllList from "../../components/Items/AllList";
+import Pagination from "../../components/Items/Pagination";
 
 function ItemsPage() {
   const [orderBy, setOrderBy] = useState("recent");
