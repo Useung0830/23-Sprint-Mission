@@ -1,11 +1,11 @@
 function ProductDescriptionInput() {
   return (
     <div>
-      <label htmlFor="DescriptionInput">상품 소개</label>
+      <label htmlFor="descriptiont">상품 소개</label>
       <input
         type="text"
-        id="DescriptionInput"
-        name="DescriptionInput"
+        id="description"
+        name="description"
         placeholder="상품 소개를 입력해주세요"
       />
     </div>

@@ -5,7 +5,7 @@ function TagAdditem() {
     <div>
       <InputAdditem
         placeholder="태그를 입력해주세요"
-        inputName="tag"
+        inputName="tags"
         type="text"
       >
         태그
