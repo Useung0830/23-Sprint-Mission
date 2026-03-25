@@ -1,4 +1,4 @@
-function InputAdditem({ children, inputName, type, placeholder }) {
+function InputAdditem({ value, children, inputName, type, placeholder }) {
   return (
     <div>
       <label htmlFor={inputName}>{children}</label>
@@ -7,6 +7,7 @@ function InputAdditem({ children, inputName, type, placeholder }) {
         placeholder={placeholder}
         id={inputName}
         name={inputName}
+        value={value}
       />
     </div>
   );
