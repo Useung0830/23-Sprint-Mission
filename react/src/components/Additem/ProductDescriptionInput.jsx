@@ -1,7 +1,7 @@
 function ProductDescriptionInput() {
   return (
     <div>
-      <label for="DescriptionInput">상품 소개</label>
+      <label htmlFor="DescriptionInput">상품 소개</label>
       <input
         type="text"
         id="DescriptionInput"
