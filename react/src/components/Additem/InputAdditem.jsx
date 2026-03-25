@@ -1,13 +1,21 @@
-function InputAdditem({ value, children, inputName, type, placeholder }) {
+function InputAdditem({
+  type,
+  inputName,
+  placeholder,
+  onChange,
+  children,
+  ...rest
+}) {
   return (
     <div>
       <label htmlFor={inputName}>{children}</label>
       <input
-        type={type}
-        placeholder={placeholder}
         id={inputName}
         name={inputName}
-        value={value}
+        type={type}
+        placeholder={placeholder}
+        onChange={onChange}
+        {...rest}
       />
     </div>
   );
