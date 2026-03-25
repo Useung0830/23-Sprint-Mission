@@ -9,7 +9,7 @@ function FormAdditem() {
       <ImgAdditem />
       <InputAdditem
         placeholder="상품명을 입력해주세요"
-        inputName="ProductName"
+        inputName="name"
         type="text"
       >
         상품명
@@ -17,7 +17,7 @@ function FormAdditem() {
       <ProductDescriptionInput />
       <InputAdditem
         placeholder="판매 가격을 입력해주세요"
-        inputName="ProductName"
+        inputName="price"
         type="number"
       >
         판매가격
