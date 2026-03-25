@@ -4,8 +4,13 @@ import ProductDescriptionInput from "./ProductDescriptionInput";
 import TagAdditem from "./TagAdditem";
 
 function FormAdditem() {
+  const submit = (formData) => {
+    const data = Object.fromEntries(formData.entries());
+    console.log("전송될 데이터:", data);
+  };
+
   return (
-    <form>
+    <form id="add-item-form" action={submit}>
       <ImgAdditem />
       <InputAdditem
         placeholder="상품명을 입력해주세요"
