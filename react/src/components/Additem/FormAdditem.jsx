@@ -15,7 +15,7 @@ function FormAdditem() {
 
   return (
     <form id="add-item-form" action={submit}>
-      <ImgAdditem />
+      <ImgAdditem name="imgFile" />
       <InputAdditem
         placeholder="상품명을 입력해주세요"
         inputName="name"
