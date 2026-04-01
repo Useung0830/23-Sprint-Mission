@@ -1,13 +1,36 @@
-import { get } from "./axios";
+import { get, post } from "./axios";
 
-export async function getInitialProducts(q = "") {
-  const query = q ? `&q=${q}` : "";
-  const response = await get(`/products?offset=0&limit=9${query}`);
+export async function getBestProducts(orderBy = "favorite", pageSize = 4) {
+  const response = await get("/products", {
+    params: {
+      orderBy: orderBy,
+      pageSize: pageSize,
+    },
+  });
+
+  return response;
+}
+
+export async function getAllProducts(page, orderBy, keyword, pageSize) {
+  const response = await get("/products", {
+    params: {
+      page: page,
+      orderBy: orderBy,
+      keyword: keyword,
+      pageSize: pageSize,
+    },
+  });
+
   return response;
 }
 
 export async function getProduct(productId) {
   const product = await get(`/products/${productId}`);
+  return product;
+}
+
+export async function postProduct() {
+  const product = await post(`/products`);
   return product;
 }
 

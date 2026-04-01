@@ -1,9 +1,10 @@
 import { useEffect, useState, useRef } from "react";
 import styles from "./ItemsPage.module.css";
 import BestList from "../../components/Items/BestList";
-import axios from "../../api/axios";
+import { get } from "../../api/axios";
 import AllList from "../../components/Items/AllList";
 import Pagination from "../../components/Items/Pagination";
+import { getAllProducts, getBestProducts } from "../../api/data";
 
 function ItemsPage() {
   const [orderBy, setOrderBy] = useState("recent");
@@ -35,22 +36,18 @@ function ItemsPage() {
 
   const loadBestItems = async () => {
     try {
-      const response = await axios.get("/Products", {
-        params: { orderBy: "favorite", pageSize: 4 },
-      });
-      setBestItems(response.data.list);
+      const bestProducts = await getBestProducts();
+      setBestItems(bestProducts.list);
     } catch (error) {
       console.error("베스트 상품 로드 실패:", error);
     }
   };
 
-  const itemsLoad = async (p, o, k, s) => {
+  const itemsLoad = async (page, orderBy, keyword, pageSize) => {
     try {
-      const response = await axios.get(`/Products`, {
-        params: { orderBy: o, page: p, pageSize: s, keyword: k },
-      });
-      setItems(response.data.list);
-      setTotalCount(response.data.totalCount);
+      const response = await getAllProducts(page, orderBy, keyword, pageSize);
+      setItems(response.list);
+      setTotalCount(response.totalCount);
     } catch (error) {
       console.error(
         "상품 로드 에러:",
