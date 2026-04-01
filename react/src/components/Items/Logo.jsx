@@ -1,4 +1,4 @@
-import logoPanda from "../../../../images/logo_panda.svg";
+import logoPanda from "../../assets/logo_panda.svg";
 import styles from "./Logo.module.css";
 function Logo() {
   return (

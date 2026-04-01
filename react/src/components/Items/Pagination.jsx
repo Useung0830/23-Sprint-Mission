@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import styles from "./Pagination.module.css";
-import arrowRight from "../../../../images/arrow_right.svg";
-import arrowLeft from "../../../../images/arrow_left.svg";
+import arrowRight from "../../assets/arrow_right.svg";
+import arrowLeft from "../../assets/arrow_left.svg";
 
 function Pagination({ currentPage, onPageChange, totalCount, pageSize }) {
   const [pages, setPages] = useState([]);
