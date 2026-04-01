@@ -22,7 +22,6 @@ function TagAdditem() {
     <div>
       <InputAdditem
         placeholder="태그를 입력해주세요"
-        inputName="tags_input"
         type="text"
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}

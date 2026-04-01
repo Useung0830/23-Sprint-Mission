@@ -8,13 +8,26 @@ const instance = Axios.create({
   },
 });
 
-// 2. 공통 요청 함수 (내부용)
+instance.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem("accessToken"); // 👈 이 이름이 맞는지 재확인!
+
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+      console.log("✅ [인증성공] 헤더에 토큰이 부착되었습니다.");
+    } else {
+      console.error("❌ [인증실패] 로컬 스토리지에 토큰이 없습니다!");
+    }
+    return config;
+  },
+  (error) => Promise.reject(error),
+);
+
 async function request(config) {
   try {
     const response = await instance(config);
-    return response.data; // Axios는 데이터를 .data에 담아줍니다.
+    return response.data;
   } catch (error) {
-    // 에러 발생 시 처리
     const status = error.response ? error.response.status : "NETWORK_ERROR";
     const newError = new Error(`HTTP error! status: ${status}`);
     newError.status = status;
