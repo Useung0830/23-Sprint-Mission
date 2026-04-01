@@ -1,5 +1,5 @@
 import styles from "./ListItem.module.css";
-import Heart from "../../../../images/favoriteHeart.svg";
+import Heart from "../../assets/favoriteHeart.svg";
 
 function ListItem({ item, type }) {
   const imageClass = type === "best" ? styles["size-best"] : styles["size-all"];
