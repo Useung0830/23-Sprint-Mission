@@ -52,7 +52,5 @@ export async function uploadImage(file) {
     },
   });
 
-  // 💡 중요: 서버 응답 객체 구조를 확인하세요.
-  // 보통 response.url 또는 response.data.url에 주소가 있습니다.
   return response.url || response.data?.url;
 }

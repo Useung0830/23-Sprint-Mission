@@ -14,9 +14,6 @@ instance.interceptors.request.use(
 
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
-      console.log("✅ [인증성공] 헤더에 토큰이 부착되었습니다.");
-    } else {
-      console.error("❌ [인증실패] 로컬 스토리지에 토큰이 없습니다!");
     }
     return config;
   },
