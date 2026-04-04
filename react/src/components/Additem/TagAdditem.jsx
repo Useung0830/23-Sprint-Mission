@@ -18,7 +18,6 @@ function TagAdditem() {
     }
   };
 
-  // 삭제 로직 추가
   const handleDelete = (indexToDelete) => {
     setTags(tags.filter((_, index) => index !== indexToDelete));
   };
@@ -38,8 +37,8 @@ function TagAdditem() {
       <input type="hidden" name="tags" value={JSON.stringify(tags)} />
       <div className={styles.tagsBox}>
         {tags.map((tag, index) => (
-          <div className={styles.tagContainer}>
-            <div key={index} className={styles.tagWrapper}>
+          <div key={index} className={styles.tagContainer}>
+            <div className={styles.tagWrapper}>
               {" "}
               <span className={styles.tagname}>#{tag}</span>
               <img

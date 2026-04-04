@@ -6,21 +6,30 @@ import styles from "./ImgAdditem.module.css";
 function ImgAdditem({ name }) {
   const [file, setFile] = useState();
   const [preview, setPreview] = useState();
+  const [showError, setShowError] = useState(false);
   const inputRef = useRef();
 
   const handleChange = (e) => {
     const nextFile = e.target.files[0];
-    setFile(nextFile);
+    if (nextFile) {
+      setFile(nextFile);
+      setShowError(false);
+    }
   };
 
   const handleClear = () => {
     setFile(null);
+    setShowError(false);
     if (inputRef.current) {
       inputRef.current.value = "";
     }
   };
 
   const handleClick = () => {
+    if (file) {
+      setShowError(true);
+      return;
+    }
     if (inputRef.current) {
       inputRef.current.click();
     }
@@ -65,6 +74,11 @@ function ImgAdditem({ name }) {
           </div>
         )}
       </div>
+      {showError && (
+        <span className={styles.errorMessage}>
+          *이미지 등록은 최대 1개까지 가능합니다.
+        </span>
+      )}
     </div>
   );
 }

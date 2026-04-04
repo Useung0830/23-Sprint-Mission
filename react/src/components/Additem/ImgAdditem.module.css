@@ -30,3 +30,8 @@
   top: 14px;
   right: 13px;
 }
+
+.errorMessage {
+  font: var(--font-Regular16);
+  color: #f74747;
+}
