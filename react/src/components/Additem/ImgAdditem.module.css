@@ -8,6 +8,7 @@
   height: 282px;
   object-fit: cover;
   border-radius: 12px;
+  border: 1px solid var(--secondary-50);
 }
 
 .subtitle {
@@ -34,4 +35,11 @@
 .errorMessage {
   font: var(--font-Regular16);
   color: #f74747;
+}
+
+@media (max-width: 1200px) {
+  .fileImg {
+    width: 168px;
+    height: 168px;
+  }
 }
