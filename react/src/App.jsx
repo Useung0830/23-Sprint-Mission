@@ -5,16 +5,19 @@ import Footer from "./components/Items/Footer";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MarginTop from "./components/MarginTop";
 import MarginBottom from "./components/MarginBottom";
+import styles from "./App.module.css";
 
 function App() {
   return (
     <BrowserRouter>
       <Header />
       <MarginTop />
-      <Routes>
-        <Route path="/items" element={<ItemsPage />}></Route>
-        <Route path="additem" element={<AdditemPage />}></Route>
-      </Routes>
+      <div className={styles.main}>
+        <Routes>
+          <Route path="/items" element={<ItemsPage />}></Route>
+          <Route path="additem" element={<AdditemPage />}></Route>
+        </Routes>
+      </div>
       <MarginBottom />
       <Footer />
     </BrowserRouter>

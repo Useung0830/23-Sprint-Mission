@@ -3,7 +3,7 @@
   height: 42px;
   font: var(--font-Semibold16);
   color: var(--secondary-100);
-  background-color: var(--secondary-800);
+  background-color: var(--primary-100);
   border-radius: 8px;
   border: none;
 }
