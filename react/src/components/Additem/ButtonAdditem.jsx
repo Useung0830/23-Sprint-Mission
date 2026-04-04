@@ -1,6 +1,13 @@
-function ButtonAdditem() {
+import styles from "./ButtonAdditem.module.css";
+
+function ButtonAdditem({ disabled }) {
   return (
-    <button form="add-item-form" type="submit">
+    <button
+      className={styles.addbutton}
+      form="add-item-form"
+      type="submit"
+      disabled={disabled}
+    >
       등록
     </button>
   );

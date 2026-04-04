@@ -1,3 +1,5 @@
+import styles from "./InputAdditem.module.css";
+
 function InputAdditem({
   type,
   inputName,
@@ -7,11 +9,14 @@ function InputAdditem({
   ...rest
 }) {
   return (
-    <div>
-      <label htmlFor={inputName}>{children}</label>
+    <div className={styles.inputContainer}>
+      <label htmlFor={inputName} className={styles.subtitle}>
+        {children}
+      </label>
       <input
         id={inputName}
         name={inputName}
+        className={styles.inputbox}
         type={type}
         placeholder={placeholder}
         onChange={onChange}

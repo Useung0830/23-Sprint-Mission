@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import placeholderImage from "../../assets/placeholderImage.svg";
+import ic_X from "../../assets/ic_X.svg";
 import styles from "./ImgAdditem.module.css";
 
 function ImgAdditem({ name }) {
@@ -39,9 +40,9 @@ function ImgAdditem({ name }) {
   }, [file]);
 
   return (
-    <div>
-      <span>상품 이미지</span>
-      <div>
+    <div className={styles.container}>
+      <span className={styles.subtitle}>상품 이미지</span>
+      <div className={styles.imgBox}>
         <input
           name={name}
           type="file"
@@ -56,9 +57,11 @@ function ImgAdditem({ name }) {
           onClick={handleClick}
         />
         {file && (
-          <div>
+          <div className={styles.previewContainer}>
             <img src={preview} className={styles.fileImg} />{" "}
-            <div onClick={handleClear}>X</div>
+            <div className={styles.ic_X} onClick={handleClear}>
+              <img src={ic_X}></img>
+            </div>
           </div>
         )}
       </div>

@@ -1,0 +1,35 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.tagsBox {
+  display: flex;
+  gap: 12px;
+}
+
+.tagContainer {
+  display: flex;
+  padding: 6px 12px 6px 16px;
+  height: 36px;
+  width: 110px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 26px;
+  gap: 10px;
+  background-color: var(--secondary-100);
+}
+
+.tagWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.tagname {
+  font: var(--font-Regular16);
+  color: var(--secondary-800);
+}

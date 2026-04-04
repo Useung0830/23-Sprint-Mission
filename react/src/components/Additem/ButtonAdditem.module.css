@@ -1,0 +1,13 @@
+.addbutton {
+  width: 74px;
+  height: 42px;
+  font: var(--font-Semibold16);
+  color: var(--secondary-100);
+  background-color: var(--secondary-800);
+  border-radius: 8px;
+  border: none;
+}
+
+.addbutton:disabled {
+  background-color: var(--secondary-400);
+}
