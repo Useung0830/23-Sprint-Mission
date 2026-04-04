@@ -1,0 +1,25 @@
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.subtitle {
+  font: var(--font-Bold18);
+  color: var(--secondary-800);
+}
+
+.inputbox {
+  height: 282px;
+  border: none;
+  border-radius: 12px;
+  background-color: var(--secondary-100);
+  padding: 16px 24px;
+  font: var(--font-Regular16);
+  color: var(--secondary-800);
+}
+
+.inputbox::placeholder {
+  font: var(--font-Regular16);
+  color: var(--secondary-400);
+}

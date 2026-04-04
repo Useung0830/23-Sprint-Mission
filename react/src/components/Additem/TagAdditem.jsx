@@ -1,5 +1,7 @@
 import { useState } from "react";
 import InputAdditem from "./InputAdditem";
+import styles from "./TagAdditem.module.css";
+import ic_X from "../../assets/ic_X.svg";
 
 function TagAdditem() {
   const [inputValue, setInputValue] = useState("");
@@ -8,9 +10,7 @@ function TagAdditem() {
   const handleKeyDown = (e) => {
     if (e.key === "Enter" || e.key === " " || e.key === ",") {
       e.preventDefault();
-
       const trimmedValue = inputValue.trim().replace(/,/g, "");
-
       if (trimmedValue && !tags.includes(trimmedValue)) {
         setTags([...tags, trimmedValue]);
       }
@@ -18,8 +18,13 @@ function TagAdditem() {
     }
   };
 
+  // 삭제 로직 추가
+  const handleDelete = (indexToDelete) => {
+    setTags(tags.filter((_, index) => index !== indexToDelete));
+  };
+
   return (
-    <div>
+    <div className={styles.container}>
       <InputAdditem
         placeholder="태그를 입력해주세요"
         type="text"
@@ -29,10 +34,22 @@ function TagAdditem() {
       >
         태그
       </InputAdditem>
+
       <input type="hidden" name="tags" value={JSON.stringify(tags)} />
-      <div>
+      <div className={styles.tagsBox}>
         {tags.map((tag, index) => (
-          <span key={index}>#{tag}</span>
+          <div className={styles.tagContainer}>
+            <div key={index} className={styles.tagWrapper}>
+              {" "}
+              <span className={styles.tagname}>#{tag}</span>
+              <img
+                onClick={() => handleDelete(index)}
+                src={ic_X}
+                className={styles.deleteBtn}
+                alt="삭제"
+              />
+            </div>
+          </div>
         ))}
       </div>
     </div>
