@@ -1,29 +1,33 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getProduct } from "../../api/data";
-import { formatDate } from "../../utils/formatData";
+import { getProduct, getProductComments } from "../../api/data";
+import { formatDate, formatRelativeTime } from "../../utils/formatData";
 
 function ItemDetail() {
   const { productId } = useParams();
   const [item, setItem] = useState(null);
+  const [comments, setComments] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    async function loadItem() {
+    async function loadData() {
       try {
         setIsLoading(true);
-        const data = await getProduct(productId);
-        setItem(data);
+        const [productData, commentsData] = await Promise.all([
+          getProduct(productId),
+          getProductComments(productId),
+        ]);
+
+        setItem(productData);
+        setComments(commentsData);
       } catch (error) {
-        console.error("상품을 불러오는 데 실패했습니다:", error);
+        console.error("데이터 로드 실패:", error);
       } finally {
         setIsLoading(false);
       }
     }
 
-    if (productId) {
-      loadItem();
-    }
+    if (productId) loadData();
   }, [productId]);
 
   if (isLoading) return <div>로딩 중...</div>;
@@ -47,6 +51,23 @@ function ItemDetail() {
         <span>{item.ownerNickname}</span>
         <span>{formatDate(item.createdAt)}</span>
         <span>{item.favoriteCount}</span>
+      </div>
+      <div>
+        {comments.list.map((comment) => (
+          <div key={comment.id}>
+            <div>
+              <p>{comment.content}</p>
+              <div>
+                <img src={comment.writer.image} alt="writer-image" />
+                <div>
+                  <span>{comment.writer.nickname}</span>
+                  <span>{formatRelativeTime(comment.createdAt)}</span>
+                </div>
+              </div>
+            </div>
+            <img alt="kebab" />
+          </div>
+        ))}
       </div>
     </div>
   );

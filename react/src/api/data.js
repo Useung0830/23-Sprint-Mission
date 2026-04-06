@@ -24,11 +24,6 @@ export async function getAllProducts(page, orderBy, keyword, pageSize) {
   return response;
 }
 
-export async function getProduct(productId) {
-  const product = await get(`/products/${productId}`);
-  return product;
-}
-
 export async function postProduct(productData) {
   const product = await post(`/products`, productData);
   return product;
@@ -53,4 +48,14 @@ export async function uploadImage(file) {
   });
 
   return response.url || response.data?.url;
+}
+
+export async function getProduct(productId) {
+  const product = await get(`/products/${productId}`);
+  return product;
+}
+
+export async function getProductComments(productId) {
+  const productComments = await get(`/products/${productId}/comments?limit=10`);
+  return productComments;
 }
