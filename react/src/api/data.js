@@ -55,7 +55,14 @@ export async function getProduct(productId) {
   return product;
 }
 
-export async function getProductComments(productId) {
-  const productComments = await get(`/products/${productId}/comments?limit=10`);
+export async function getProductComments(productId, limit = 3) {
+  const productComments = await get(
+    `/products/${productId}/comments?limit=${limit}`,
+  );
   return productComments;
+}
+
+export async function postProductComment(productId, commentData) {
+  const comment = await post(`/products/${productId}/comments`, commentData);
+  return comment;
 }

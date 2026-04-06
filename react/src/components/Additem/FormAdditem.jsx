@@ -71,8 +71,6 @@ function FormAdditem({ onValidationChange }) {
       >
         상품명
       </InputAdditem>
-
-      {/* 💡 설명 입력창에서도 onChange를 통해 상태를 업데이트해야 합니다 */}
       <ProductDescriptionInput
         value={descriptionValue}
         onChange={(e) => setDescriptionValue(e.target.value)}
