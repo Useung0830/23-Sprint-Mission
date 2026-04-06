@@ -1,5 +1,11 @@
+import ItemDetail from "../../components/ItemDetail/ItemDetail";
+
 function ItemDetailPage() {
-  return;
+  return (
+    <>
+      <ItemDetail />
+    </>
+  );
 }
 
 export default ItemDetailPage;
