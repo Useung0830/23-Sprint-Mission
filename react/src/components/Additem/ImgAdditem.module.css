@@ -1,0 +1,45 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.fileImg {
+  width: 282px;
+  height: 282px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid var(--secondary-50);
+}
+
+.subtitle {
+  font: var(--font-Bold18);
+  color: var(--secondary-800);
+}
+
+.imgBox {
+  display: flex;
+  gap: 24px;
+}
+
+.previewContainer {
+  position: relative;
+  display: flex;
+}
+
+.ic_X {
+  position: absolute;
+  top: 14px;
+  right: 13px;
+}
+
+.errorMessage {
+  font: var(--font-Regular16);
+  color: #f74747;
+}
+
+@media (max-width: 1200px) {
+  .fileImg {
+    width: 168px;
+    height: 168px;
+  }
+}

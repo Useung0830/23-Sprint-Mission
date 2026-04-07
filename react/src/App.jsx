@@ -1,0 +1,27 @@
+import ItemsPage from "./pages/ItemsPage/ItemsPage";
+import AdditemPage from "./pages/AdditemPage/additemPage";
+import Header from "./components/Items/Header";
+import Footer from "./components/Items/Footer";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import MarginTop from "./components/MarginTop";
+import MarginBottom from "./components/MarginBottom";
+import styles from "./App.module.css";
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Header />
+      <MarginTop />
+      <div className={styles.main}>
+        <Routes>
+          <Route path="/items" element={<ItemsPage />}></Route>
+          <Route path="additem" element={<AdditemPage />}></Route>
+        </Routes>
+      </div>
+      <MarginBottom />
+      <Footer />
+    </BrowserRouter>
+  );
+}
+
+export default App;
