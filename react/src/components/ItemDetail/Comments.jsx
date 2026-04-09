@@ -6,6 +6,7 @@ import {
   getProductComments,
   deleteComment,
 } from "../../api/data";
+import styles from "./Comments.module.css";
 
 function Comments({ productId, comments, setComments }) {
   const [openMenuId, setOpenMenuId] = useState(null);
@@ -91,40 +92,49 @@ function Comments({ productId, comments, setComments }) {
   }, [editingId]);
 
   return (
-    <div>
+    <div className={styles.commentsList}>
       {comments?.list?.map((comment) => (
-        <div key={comment.id}>
-          <div>
-            {editingId === comment.id ? (
-              <form onSubmit={handleEditSubmit}>
-                <textarea
-                  ref={editInputRef}
-                  name="content"
-                  value={editContent}
-                  onChange={(e) => setEditContent(e.target.value)}
-                />
-                <div>
-                  <button type="button" onClick={handleCancel}>
-                    취소
-                  </button>
-                  <button type="submit">수정 완료</button>
-                </div>
-              </form>
-            ) : (
-              <p>{comment.content}</p>
-            )}
-          </div>
+        <div key={comment.id} className={styles.commentCard}>
+          <div className={styles.commentBody}>
+            <div className={styles.contentArea}>
+              {editingId === comment.id ? (
+                <form onSubmit={handleEditSubmit}>
+                  <textarea
+                    ref={editInputRef}
+                    name="content"
+                    value={editContent}
+                    onChange={(e) => setEditContent(e.target.value)}
+                  />
+                  <div>
+                    <button type="button" onClick={handleCancel}>
+                      취소
+                    </button>
+                    <button type="submit">수정 완료</button>
+                  </div>
+                </form>
+              ) : (
+                <p className={styles.commentText}>{comment.content}</p>
+              )}
+            </div>
 
-          <div>
-            <img src={comment.writer.image} alt="writer" />
-            <div>
-              <span>{comment.writer.nickname}</span>
-              <span>{formatRelativeTime(comment.createdAt)}</span>
+            <div className={styles.writerProfile}>
+              <img
+                src={comment.writer.image}
+                alt="writer"
+                className={styles.avatar}
+              />
+              <div className={styles.writerMeta}>
+                <span className={styles.nickname}>
+                  {comment.writer.nickname}
+                </span>
+                <span className={styles.timestamp}>
+                  {formatRelativeTime(comment.createdAt)}
+                </span>
+              </div>
             </div>
           </div>
-
           {editingId !== comment.id && (
-            <>
+            <div className={styles.kebabCo}>
               <img
                 src={ic_kebab}
                 alt="kebab"
@@ -134,12 +144,22 @@ function Comments({ productId, comments, setComments }) {
                 }}
               />
               {openMenuId === comment.id && (
-                <div ref={menuRef}>
-                  <div onClick={() => handleEditClick(comment)}>수정하기</div>
-                  <div onClick={() => handleDeleteClick(comment)}>삭제하기</div>
+                <div ref={menuRef} className={styles.dropdownMenu}>
+                  <div
+                    onClick={() => handleEditClick(comment)}
+                    className={styles.menuItem}
+                  >
+                    수정하기
+                  </div>
+                  <div
+                    onClick={() => handleDeleteClick(comment)}
+                    className={styles.menuItem}
+                  >
+                    삭제하기
+                  </div>
                 </div>
               )}
-            </>
+            </div>
           )}
         </div>
       ))}
