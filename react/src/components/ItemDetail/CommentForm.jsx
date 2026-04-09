@@ -37,7 +37,10 @@ function CommentForm({ productId, setComments }) {
 "
         ></textarea>
       </form>
-      <ButtonAdditem disabled={false} form="add-comment-form" />
+      <ButtonAdditem
+        disabled={commentValue ? false : true}
+        form="add-comment-form"
+      />
     </div>
   );
 }
