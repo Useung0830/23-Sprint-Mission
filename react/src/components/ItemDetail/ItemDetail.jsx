@@ -1,23 +1,17 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { getProduct, getProductComments } from "../../api/data";
-
-import ic_back from "../../assets/ic_back.svg";
 import ItemInfo from "./ItemInfo";
 import CommentForm from "./CommentForm";
 import Comments from "./Comments";
+import BackButton from "./BackButton";
 
 function ItemDetail() {
   const { productId } = useParams();
-  const navigate = useNavigate();
 
   const [item, setItem] = useState(null);
   const [comments, setComments] = useState();
   const [isLoading, setIsLoading] = useState(true);
-
-  const handleBack = () => {
-    navigate("/items");
-  };
 
   useEffect(() => {
     async function loadData() {
@@ -52,10 +46,7 @@ function ItemDetail() {
           <Comments comments={comments} />
         </div>
       </div>
-      <div onClick={handleBack}>
-        <span>목록으로 돌아가기</span>
-        <img src={ic_back} alt="back" />
-      </div>
+      <BackButton />
     </div>
   );
 }
