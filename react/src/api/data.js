@@ -1,4 +1,4 @@
-import { get, post } from "./axios";
+import { get, patch, post } from "./axios";
 
 export async function getBestProducts(orderBy = "favorite", pageSize = 4) {
   const response = await get("/products", {
@@ -62,7 +62,12 @@ export async function getProductComments(productId, limit = 3) {
   return productComments;
 }
 
-export async function postProductComment(productId, commentData) {
-  const comment = await post(`/products/${productId}/comments`, commentData);
+export async function postProductComment(commentId, commentData) {
+  const comment = await post(`/products/${commentId}/comments`, commentData);
+  return comment;
+}
+
+export async function patchComment(commentId, commentData) {
+  const comment = await patch(`/comments/${commentId}`, commentData);
   return comment;
 }

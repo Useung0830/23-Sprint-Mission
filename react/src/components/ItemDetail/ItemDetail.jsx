@@ -43,7 +43,11 @@ function ItemDetail() {
         <ItemInfo item={item} />
         <div>
           <CommentForm productId={productId} setComments={setComments} />
-          <Comments comments={comments} />
+          <Comments
+            productId={productId}
+            comments={comments}
+            setComments={setComments}
+          />
         </div>
       </div>
       <BackButton />
