@@ -1,45 +1,22 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getProduct, getProductComments } from "../../api/data";
-import { formatRelativeTime } from "../../utils/formatData";
-import ic_kebab from "../../assets/ic_kebab.svg";
+
 import ic_back from "../../assets/ic_back.svg";
 import ItemInfo from "./ItemInfo";
 import CommentForm from "./CommentForm";
+import Comments from "./Comments";
 
 function ItemDetail() {
   const { productId } = useParams();
   const navigate = useNavigate();
-  const menuRef = useRef(null);
 
   const [item, setItem] = useState(null);
   const [comments, setComments] = useState();
   const [isLoading, setIsLoading] = useState(true);
-  const [openMenuId, setOpenMenuId] = useState(null);
 
   const handleBack = () => {
     navigate("/items");
-  };
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (
-        openMenuId &&
-        menuRef.current &&
-        !menuRef.current.contains(event.target)
-      ) {
-        setOpenMenuId(null);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [openMenuId]);
-
-  const handleMenuToggle = (commentId) => {
-    setOpenMenuId(openMenuId === commentId ? null : commentId);
   };
 
   useEffect(() => {
@@ -72,48 +49,7 @@ function ItemDetail() {
         <ItemInfo item={item} />
         <div>
           <CommentForm productId={productId} setComments={setComments} />
-          {comments.list.map((comment) => (
-            <div key={comment.id}>
-              <div>
-                <p>{comment.content}</p>
-                <div>
-                  <img src={comment.writer.image} alt="writer-image" />
-                  <div>
-                    <span>{comment.writer.nickname}</span>
-                    <span>{formatRelativeTime(comment.createdAt)}</span>
-                  </div>
-                </div>
-              </div>
-              <img
-                src={ic_kebab}
-                alt="kebab"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleMenuToggle(comment.id);
-                }}
-              />
-              {openMenuId === comment.id && (
-                <div ref={menuRef}>
-                  <div
-                    onClick={() => {
-                      alert("수정 로직 실행");
-                      setOpenMenuId(null);
-                    }}
-                  >
-                    수정하기
-                  </div>
-                  <div
-                    onClick={() => {
-                      alert("삭제 로직 실행");
-                      setOpenMenuId(null);
-                    }}
-                  >
-                    삭제하기
-                  </div>
-                </div>
-              )}
-            </div>
-          ))}
+          <Comments comments={comments} />
         </div>
       </div>
       <div onClick={handleBack}>
