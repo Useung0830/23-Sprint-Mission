@@ -13,6 +13,7 @@ function CommentForm({ productId, setComments }) {
 
       const updatedComments = await getProductComments(productId, 3);
       setComments(updatedComments);
+      setCommentValue(null);
     } catch (error) {
       console.error("등록 실패:", error);
     }

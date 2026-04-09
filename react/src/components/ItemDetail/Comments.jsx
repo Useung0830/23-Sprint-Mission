@@ -8,6 +8,8 @@ function Comments({ productId, comments, setComments }) {
   const [openMenuId, setOpenMenuId] = useState(null);
   const menuRef = useRef(null);
 
+  const editInputRef = useRef(null);
+
   const [editingId, setEditingId] = useState(null);
   const [editContent, setEditContent] = useState("");
 
@@ -64,16 +66,25 @@ function Comments({ productId, comments, setComments }) {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [openMenuId]);
 
+  useEffect(() => {
+    if (editingId && editInputRef.current) {
+      editInputRef.current.focus();
+
+      const length = editInputRef.current.value.length;
+      editInputRef.current.setSelectionRange(length, length);
+    }
+  }, [editingId]);
+
   return (
     <div>
       {comments?.list?.map((comment) => (
         <div key={comment.id}>
           <div>
             {editingId === comment.id ? (
-              /* --- 수정 시 Form 구조 사용 --- */
               <form onSubmit={handleEditSubmit}>
                 <textarea
-                  name="content" // FormData에서 찾을 수 있도록 name 필수
+                  ref={editInputRef}
+                  name="content"
                   value={editContent}
                   onChange={(e) => setEditContent(e.target.value)}
                 />
