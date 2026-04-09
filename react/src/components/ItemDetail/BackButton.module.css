@@ -1,0 +1,21 @@
+.backButtonWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border-radius: 40px;
+  background-color: var(--primary-100);
+  width: 240px;
+  height: 48px;
+  gap: 8px;
+}
+
+.backButtonText {
+  font: var(--font-Semibold18);
+  color: var(--secondary-100);
+}
+
+.backIcon {
+  height: 24px;
+  width: 24px;
+}
