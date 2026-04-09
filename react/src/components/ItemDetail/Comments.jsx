@@ -1,10 +1,13 @@
 import { useState, useRef, useEffect } from "react";
 import { formatRelativeTime } from "../../utils/formatData";
 import ic_kebab from "../../assets/ic_kebab.svg";
-import { patchComment, getProductComments } from "../../api/data"; // getProductComments 추가
+import {
+  patchComment,
+  getProductComments,
+  deleteComment,
+} from "../../api/data";
 
 function Comments({ productId, comments, setComments }) {
-  // 상위에서 productId와 setComments를 받아온다고 가정
   const [openMenuId, setOpenMenuId] = useState(null);
   const menuRef = useRef(null);
 
@@ -23,16 +26,29 @@ function Comments({ productId, comments, setComments }) {
     setOpenMenuId(null);
   };
 
+  const handleDeleteClick = async (comment) => {
+    try {
+      await deleteComment(comment.id);
+      alert(`삭제 완료!`);
+
+      if (setComments && productId) {
+        const updated = await getProductComments(productId, 3);
+        setComments(updated);
+      }
+      setOpenMenuId(null);
+    } catch {
+      alert("삭제 중 오류가 발생했습니다.");
+    }
+  };
+
   const handleCancel = () => {
     setEditingId(null);
     setEditContent("");
   };
 
-  // --- Form 데이터를 처리하는 함수 ---
   const handleEditSubmit = async (e) => {
     e.preventDefault(); // 페이지 새로고침 방지
 
-    // FormData 객체를 통해 데이터 가져오기
     const formData = new FormData(e.currentTarget);
     const updatedContent = formData.get("content");
 
@@ -41,7 +57,6 @@ function Comments({ productId, comments, setComments }) {
       alert(`수정 완료!`);
       setEditingId(null);
 
-      // 목록 새로고침 (부모에게 받은 setComments가 있다면 호출)
       if (setComments && productId) {
         const updated = await getProductComments(productId, 3);
         setComments(updated);
@@ -121,7 +136,7 @@ function Comments({ productId, comments, setComments }) {
               {openMenuId === comment.id && (
                 <div ref={menuRef}>
                   <div onClick={() => handleEditClick(comment)}>수정하기</div>
-                  <div onClick={() => alert("삭제 클릭")}>삭제하기</div>
+                  <div onClick={() => handleDeleteClick(comment)}>삭제하기</div>
                 </div>
               )}
             </>
