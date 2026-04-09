@@ -98,18 +98,25 @@ function Comments({ productId, comments, setComments }) {
           <div className={styles.commentBody}>
             <div className={styles.contentArea}>
               {editingId === comment.id ? (
-                <form onSubmit={handleEditSubmit}>
+                <form onSubmit={handleEditSubmit} className={styles.editForm}>
                   <textarea
                     ref={editInputRef}
                     name="content"
+                    className={styles.editTextarea}
                     value={editContent}
                     onChange={(e) => setEditContent(e.target.value)}
                   />
-                  <div>
-                    <button type="button" onClick={handleCancel}>
+                  <div className={styles.editActions}>
+                    <button
+                      type="button"
+                      onClick={handleCancel}
+                      className={styles.cancelButton}
+                    >
                       취소
                     </button>
-                    <button type="submit">수정 완료</button>
+                    <button type="submit" className={styles.saveButton}>
+                      수정 완료
+                    </button>
                   </div>
                 </form>
               ) : (

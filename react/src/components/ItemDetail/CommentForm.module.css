@@ -27,3 +27,10 @@
   font: var(--font-Regular16);
   color: (--secondary-400);
 }
+
+.formTextarea:focus {
+  outline: none;
+  border-color: var(--primary-100);
+  box-shadow: 0 0 0 3px rgba(54, 146, 255, 0.2);
+  transition: all 0.2s ease-in-out;
+}
