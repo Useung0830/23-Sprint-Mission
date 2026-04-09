@@ -1,0 +1,29 @@
+.commentFormContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-end;
+}
+
+.commentForm {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.formLabel {
+  font: var(--font-Semibold16);
+  color: var(--secondary-900);
+}
+
+.formTextarea {
+  height: 104px;
+  border-radius: 12px;
+  padding: 16px 24px;
+  border: none;
+  resize: none;
+  background-color: var(--secondary-100);
+  font: var(--font-Regular16);
+  color: (--secondary-400);
+}

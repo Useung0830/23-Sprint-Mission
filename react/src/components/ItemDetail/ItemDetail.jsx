@@ -39,10 +39,10 @@ function ItemDetail() {
   if (!item) return <div>상품을 찾을 수 없습니다.</div>;
 
   return (
-    <div className={styles.container}>
-      <div>
+    <div className={styles.pageWrapper}>
+      <div className={styles.mainContent}>
         <ItemInfo item={item} />
-        <div>
+        <div className={styles.commentSection}>
           <CommentForm productId={productId} setComments={setComments} />
           <Comments
             productId={productId}
