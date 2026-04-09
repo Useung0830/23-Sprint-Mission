@@ -1,15 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import {
-  getProduct,
-  getProductComments,
-  postProductComment,
-} from "../../api/data";
-import { formatDate, formatRelativeTime } from "../../utils/formatData";
+import { getProduct, getProductComments } from "../../api/data";
+import { formatRelativeTime } from "../../utils/formatData";
 import ic_kebab from "../../assets/ic_kebab.svg";
-import profile from "../../assets/profile.svg";
 import ic_back from "../../assets/ic_back.svg";
-import ButtonAdditem from "../Additem/ButtonAdditem";
+import ItemInfo from "./ItemInfo";
+import CommentForm from "./CommentForm";
 
 function ItemDetail() {
   const { productId } = useParams();
@@ -19,24 +15,10 @@ function ItemDetail() {
   const [item, setItem] = useState(null);
   const [comments, setComments] = useState();
   const [isLoading, setIsLoading] = useState(true);
-  const [commentValue, setCommentValue] = useState("");
   const [openMenuId, setOpenMenuId] = useState(null);
 
   const handleBack = () => {
     navigate("/items");
-  };
-
-  const submit = async (formData) => {
-    try {
-      const data = Object.fromEntries(formData.entries());
-      await postProductComment(productId, data);
-      alert("코멘트 등록 성공!");
-
-      const updatedComments = await getProductComments(productId, 3);
-      setComments(updatedComments);
-    } catch (error) {
-      console.error("등록 실패:", error);
-    }
   };
 
   useEffect(() => {
@@ -87,56 +69,9 @@ function ItemDetail() {
   return (
     <div>
       <div>
+        <ItemInfo item={item} />
         <div>
-          <img src={item.images} alt={item.name} />
-          <div>
-            <div>
-              <div>
-                <h1>{item.name}</h1>
-                <span>{item.price}</span>
-              </div>
-              <img src={ic_kebab} alt="kebab" />
-            </div>
-            <div>
-              <div>
-                <span>상품 소개</span>
-                <p>{item.description}</p>
-              </div>
-              <div>
-                <span>상품 태그</span>
-                {item.tags && item.tags.length > 0 && (
-                  <div>
-                    {item.tags.map((tag, index) => (
-                      <span key={`${tag}-${index}`}>#{tag}</span>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-          <div>
-            <div>
-              <img src={profile} />
-              <span>{item.ownerNickname}</span>
-              <span>{formatDate(item.createdAt)}</span>
-            </div>
-            <span>{item.favoriteCount}</span>
-          </div>
-        </div>
-        <div>
-          <div>
-            <form id="add-comment-form" action={submit}>
-              <label>문의하기</label>
-              <textarea
-                name="content"
-                value={commentValue}
-                onChange={(e) => setCommentValue(e.target.value)}
-                placeholder="개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다.
-"
-              ></textarea>
-            </form>
-            <ButtonAdditem disabled={false} form="add-comment-form" />
-          </div>
+          <CommentForm productId={productId} setComments={setComments} />
           {comments.list.map((comment) => (
             <div key={comment.id}>
               <div>
@@ -161,7 +96,7 @@ function ItemDetail() {
                 <div ref={menuRef}>
                   <div
                     onClick={() => {
-                      alert("삭제 로직 실행");
+                      alert("수정 로직 실행");
                       setOpenMenuId(null);
                     }}
                   >
