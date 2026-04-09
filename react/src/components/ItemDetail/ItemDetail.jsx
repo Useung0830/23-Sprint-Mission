@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   getProduct,
@@ -14,11 +14,13 @@ import ButtonAdditem from "../Additem/ButtonAdditem";
 function ItemDetail() {
   const { productId } = useParams();
   const navigate = useNavigate();
+  const menuRef = useRef(null);
 
   const [item, setItem] = useState(null);
   const [comments, setComments] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [commentValue, setCommentValue] = useState("");
+  const [openMenuId, setOpenMenuId] = useState(null);
 
   const handleBack = () => {
     navigate("/items");
@@ -35,6 +37,27 @@ function ItemDetail() {
     } catch (error) {
       console.error("등록 실패:", error);
     }
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        openMenuId &&
+        menuRef.current &&
+        !menuRef.current.contains(event.target)
+      ) {
+        setOpenMenuId(null);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [openMenuId]);
+
+  const handleMenuToggle = (commentId) => {
+    setOpenMenuId(openMenuId === commentId ? null : commentId);
   };
 
   useEffect(() => {
@@ -126,7 +149,34 @@ function ItemDetail() {
                   </div>
                 </div>
               </div>
-              <img src={ic_kebab} alt="kebab" />
+              <img
+                src={ic_kebab}
+                alt="kebab"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleMenuToggle(comment.id);
+                }}
+              />
+              {openMenuId === comment.id && (
+                <div ref={menuRef}>
+                  <div
+                    onClick={() => {
+                      alert("삭제 로직 실행");
+                      setOpenMenuId(null);
+                    }}
+                  >
+                    수정하기
+                  </div>
+                  <div
+                    onClick={() => {
+                      alert("삭제 로직 실행");
+                      setOpenMenuId(null);
+                    }}
+                  >
+                    삭제하기
+                  </div>
+                </div>
+              )}
             </div>
           ))}
         </div>
