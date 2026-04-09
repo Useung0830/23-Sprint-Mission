@@ -12,15 +12,15 @@ function App() {
   return (
     <BrowserRouter>
       <Header />
-      <MarginTop />
       <div className={styles.main}>
+        <MarginTop />
         <Routes>
           <Route path="/items" element={<ItemsPage />}></Route>
           <Route path="/additem" element={<AdditemPage />}></Route>
           <Route path="/items/:productId" element={<ItemDetailPage />} />
         </Routes>
+        <MarginBottom />
       </div>
-      <MarginBottom />
       <Footer />
     </BrowserRouter>
   );

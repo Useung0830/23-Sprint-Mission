@@ -5,6 +5,7 @@ import ItemInfo from "./ItemInfo";
 import CommentForm from "./CommentForm";
 import Comments from "./Comments";
 import BackButton from "./BackButton";
+import styles from "./ItemDetail.module.css";
 
 function ItemDetail() {
   const { productId } = useParams();
@@ -38,7 +39,7 @@ function ItemDetail() {
   if (!item) return <div>상품을 찾을 수 없습니다.</div>;
 
   return (
-    <div>
+    <div className={styles.container}>
       <div>
         <ItemInfo item={item} />
         <div>
