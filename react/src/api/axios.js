@@ -1,8 +1,9 @@
-import Axios from "axios";
+import axios from "axios";
 
-// 1. Axios 인스턴스 생성 (기본 설정)
-const instance = Axios.create({
-  baseURL: "https://panda-market-api.vercel.app",
+const PANDA_API = import.meta.env.VITE_AXIOS_API_BASE_URL;
+
+const instance = axios.create({
+  baseURL: PANDA_API,
   headers: {
     "Content-Type": "application/json",
   },
