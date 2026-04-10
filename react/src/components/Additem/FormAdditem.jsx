@@ -54,7 +54,7 @@ function FormAdditem({ onValidationChange }) {
 
       await postProduct(finalData);
       alert("상품 등록 성공!");
-      navigate("/");
+      navigate("/items");
     } catch (error) {
       console.error("등록 실패:", error);
     }

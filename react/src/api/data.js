@@ -1,18 +1,18 @@
-import { del, get, patch, post } from "./axios";
+import { instance } from "./axios";
 
 export async function getBestProducts(orderBy = "favorite", pageSize = 4) {
-  const response = await get("/products", {
+  const response = await instance.get("/products", {
     params: {
       orderBy: orderBy,
       pageSize: pageSize,
     },
   });
 
-  return response;
+  return response.data;
 }
 
 export async function getAllProducts(page, orderBy, keyword, pageSize) {
-  const response = await get("/products", {
+  const response = await instance.get("/products", {
     params: {
       page: page,
       orderBy: orderBy,
@@ -21,17 +21,17 @@ export async function getAllProducts(page, orderBy, keyword, pageSize) {
     },
   });
 
-  return response;
+  return response.data;
 }
 
 export async function postProduct(productData) {
-  const product = await post(`/products`, productData);
-  return product;
+  const product = await instance.post(`/products`, productData);
+  return product.data;
 }
 
 export async function getSizeReviews(productId) {
-  const response = await get(`/products/${productId}/comments`);
-  return response;
+  const response = await instance.get(`/products/${productId}/comments`);
+  return response.data;
 }
 
 export async function uploadImage(file) {
@@ -40,7 +40,7 @@ export async function uploadImage(file) {
 
   const token = localStorage.getItem("accessToken");
 
-  const response = await post("/images/upload", formData, {
+  const response = await instance.post("/images/upload", formData, {
     headers: {
       "Content-Type": "multipart/form-data",
       Authorization: `Bearer ${token}`,
@@ -51,28 +51,31 @@ export async function uploadImage(file) {
 }
 
 export async function getProduct(productId) {
-  const product = await get(`/products/${productId}`);
-  return product;
+  const product = await instance.get(`/products/${productId}`);
+  return product.data;
 }
 
 export async function getProductComments(productId, limit = 3) {
-  const productComments = await get(
+  const productComments = await instance.get(
     `/products/${productId}/comments?limit=${limit}`,
   );
-  return productComments;
+  return productComments.data;
 }
 
 export async function postProductComment(commentId, commentData) {
-  const comment = await post(`/products/${commentId}/comments`, commentData);
-  return comment;
+  const comment = await instance.post(
+    `/products/${commentId}/comments`,
+    commentData,
+  );
+  return comment.data;
 }
 
 export async function patchComment(commentId, commentData) {
-  const comment = await patch(`/comments/${commentId}`, commentData);
-  return comment;
+  const comment = await instance.patch(`/comments/${commentId}`, commentData);
+  return comment.data;
 }
 
 export async function deleteComment(commentId) {
-  const comment = await del(`/comments/${commentId}`);
-  return comment;
+  const comment = await instance.delete(`/comments/${commentId}`);
+  return comment.data;
 }
