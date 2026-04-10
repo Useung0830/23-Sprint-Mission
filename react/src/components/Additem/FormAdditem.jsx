@@ -80,7 +80,7 @@ function FormAdditem({ onValidationChange }) {
         inputName="price"
         type="number"
         value={priceInputValue}
-        onChange={(e) => setPriceInputValue(e.target.value)}
+        onChange={(e) => setPriceInputValue(Number(e.target.value))}
         placeholder="판매 가격을 입력해주세요"
       >
         판매가격
