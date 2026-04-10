@@ -23,6 +23,7 @@
   flex-direction: column;
   justify-content: space-between;
   flex: 1;
+  gap: 40px;
 }
 
 .infoSection {
@@ -176,4 +177,13 @@
 
 .bottomDivider {
   border: 1px solid var(--secondary-200);
+}
+@media (max-width: 773px) {
+  .Wrapper {
+    flex-direction: column;
+  }
+
+  .image {
+    width: 100%;
+  }
 }
